@@ -24,7 +24,7 @@ PowerShell, Oracle, SqlServer scripts
     Faz donwload do arquivo zip de artefatos do servidor de build (nesse exemplo o VSTS), depois descompacta
     o arquivo na pasta de destino.
 
-Oracle - EF6.1.3 FluentApi.sql
+- Oracle - EF6.1.3 FluentApi.sql
     Execute esse script no seu banco oracle, sera gerado um retorno, onde é possivel copiar seu conteudo e colar
     no seu projeto dotnet, contendo fluent api da tabela selecionada.
     O segundo script, gera uma clase de dominio com os atributos da tabela.
