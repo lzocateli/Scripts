@@ -1,0 +1,6 @@
+*\packages\*
+*\bin\*
+*\obj\*
+*\.git\*
+*.zip
+*.7z

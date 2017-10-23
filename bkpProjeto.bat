@@ -1,0 +1,1 @@
+powershell -c ".\bkpPRojeto.ps1 \\minhapasta.com\meucompartilhamento\software\libdesenv\zocatel"
