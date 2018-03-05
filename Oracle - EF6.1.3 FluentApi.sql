@@ -89,7 +89,7 @@ CASE
     WHEN DATA_TYPE = 'timestamp with time zone'
       THEN 'DateTimeOffset'    
     ELSE ''
-    END ||' '||COLUMN_NAME||' { get; set; }'
+    END ||' '||COLUMN_NAME||' { get; private set; }'
 AS CLASSE
 ,CASE
     WHEN DATA_TYPE <> 'DATE' AND DATA_TYPE <> 'NUMBER'
@@ -109,12 +109,63 @@ AS CLASSE
 ,COLUMN_ID
 ,','||COLUMN_NAME AS COLUNAS_SELECT
 ,'Definir_'||COLUMN_NAME||'('||lower(COLUMN_NAME)||');' AS METODOS_CONTRUTOR
+,'private void Definir_'||COLUMN_NAME||'('||
+(
+CASE
+    WHEN (DATA_TYPE = 'VARCHAR2' OR DATA_TYPE = 'NVARCHAR2' OR DATA_TYPE = 'NCHAR'
+       OR DATA_TYPE = 'NCLOB' OR DATA_TYPE = 'CLOB' OR DATA_TYPE = 'CHAR' 
+       OR DATA_TYPE = 'ROWID' OR DATA_TYPE = 'UROWID')
+      THEN 'string'
+    ELSE ''
+    END ||
+CASE 
+    WHEN (DATA_TYPE = 'NUMBER' AND DATA_LENGTH = 1 AND DATA_PRECISION is null)
+      THEN 'bool'
+    ELSE ''
+    END ||    
+CASE 
+    WHEN (DATA_TYPE = 'NUMBER' AND DATA_LENGTH = 3 AND DATA_PRECISION is null)
+      THEN 'byte'
+    ELSE ''
+    END ||    
+CASE
+    WHEN DATA_TYPE = 'NUMBER' AND (DATA_LENGTH <= 9 AND DATA_PRECISION is null)
+      THEN 'int'    
+    ELSE ''
+    END ||
+CASE
+    WHEN DATA_TYPE = 'NUMBER' AND (DATA_LENGTH <= 18 AND DATA_PRECISION is null)
+      THEN 'long'    
+    ELSE ''
+    END ||    
+CASE
+    WHEN DATA_TYPE = 'NUMBER'
+      THEN 'decimal'    
+    ELSE ''
+    END ||
+CASE
+    WHEN DATA_TYPE = 'BINARY_DOUBLE'
+      THEN 'double'    
+    ELSE ''
+    END ||
+CASE 
+    WHEN DATA_TYPE = 'DATE'
+      THEN 'DateTime'    
+    ELSE ''
+    END ||    
+CASE
+    WHEN DATA_TYPE = 'timestamp with time zone'
+      THEN 'DateTimeOffset'    
+    ELSE ''
+    END ||''
+)
+||' '||lower(COLUMN_NAME)||') { '||COLUMN_NAME||' = '||lower(COLUMN_NAME)||'; }' AS METODOS_DEFINIR
 ,DATA_TYPE
 ,DATA_LENGTH
 ,DATA_PRECISION
 ,DATA_SCALE
 ,NULLABLE
 FROM all_tab_columns
-WHERE TABLE_NAME IN ('CLIENTES')
-  AND OWNER = 'B8UA'
+WHERE TABLE_NAME IN ('PFJ_PESSOA_FISICA_JURIDICA')
+  AND OWNER = 'B8CF'
 ORDER BY OWNER, TABLE_NAME,COLUMN_ID;
