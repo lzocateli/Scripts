@@ -81,7 +81,12 @@ CASE
     ELSE ''
     END ||
 CASE 
-    WHEN DATA_TYPE = 'DATE'
+    WHEN DATA_TYPE = 'DATE' AND NULLABLE = 'Y'
+      THEN 'DateTime?'    
+    ELSE ''
+    END ||    
+CASE 
+    WHEN DATA_TYPE = 'DATE' AND NULLABLE = 'N'
       THEN 'DateTime'    
     ELSE ''
     END ||    
@@ -149,7 +154,12 @@ CASE
     ELSE ''
     END ||
 CASE 
-    WHEN DATA_TYPE = 'DATE'
+    WHEN DATA_TYPE = 'DATE' AND NULLABLE = 'Y'
+      THEN 'DateTime?'    
+    ELSE ''
+    END ||    
+CASE 
+    WHEN DATA_TYPE = 'DATE' AND NULLABLE = 'N'
       THEN 'DateTime'    
     ELSE ''
     END ||    
@@ -166,6 +176,6 @@ CASE
 ,DATA_SCALE
 ,NULLABLE
 FROM all_tab_columns
-WHERE TABLE_NAME IN ('PFJ_PESSOA_FISICA_JURIDICA')
-  AND OWNER = 'B8CF'
+WHERE TABLE_NAME IN ('Clientes')
+  AND OWNER = 'LZO'
 ORDER BY OWNER, TABLE_NAME,COLUMN_ID;
