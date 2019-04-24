@@ -179,3 +179,22 @@ FROM all_tab_columns
 WHERE TABLE_NAME IN ('Clientes')
   AND OWNER = 'LZO'
 ORDER BY OWNER, TABLE_NAME,COLUMN_ID;
+
+/*********************************************
+* FILHA = Sempre onde ficara o mapeamento do
+* EntityFramework
+*********************************************/
+select 
+cons.owner            as filha_owner, 
+cons.table_name       as filha_table,
+cons.constraint_name  as constaint_name,
+cons.constraint_type  as constraint_type,
+col.owner             as pai_owner, 
+col.table_name        as pai_table,
+col.column_name       as column_name
+from dba_cons_columns col, 
+     dba_constraints  cons
+where cons.r_owner = col.owner
+  and cons.r_constraint_name = col.constraint_name
+  and cons.table_name = 'Clientes'
+  and cons.owner = 'dbo'
