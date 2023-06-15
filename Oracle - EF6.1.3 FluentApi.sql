@@ -5,11 +5,14 @@
    Versão: Entity Framework 6.1.3
 *************************************************************************/
 SELECT 
-'Property(x => x.'||COLUMN_NAME||')'||
+'builder.Property(x => x.'||COLUMN_NAME||')'||
 CASE
-    WHEN NULLABLE = 'Y'
-      THEN '.IsOptional()'
-    ELSE '.IsRequired()'
+    WHEN DATA_TYPE = 'VARCHAR2'
+      THEN '.IsUnicode(false)'
+    END ||
+CASE
+    WHEN NULLABLE = 'N'
+      THEN '.IsRequired()'
     END ||
 CASE
     WHEN DATA_TYPE <> 'DATE' AND DATA_TYPE <> 'NUMBER'
