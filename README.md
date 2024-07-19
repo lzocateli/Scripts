@@ -29,3 +29,24 @@ PowerShell, Oracle, SqlServer scripts
     no seu projeto dotnet, contendo fluent api da tabela selecionada.
     O segundo script, gera uma clase de dominio com os atributos da tabela.
 
+## Publicar script no powershell galery
+
+- Site PowerShell Gallery: https://www.powershellgallery.com/
+  
+- Crie a variavel de ambiente no seu profile:
+
+```bash
+export NUGET_CLI_LANGUAGE=en-us
+```
+
+- Verifique se o script esta correto
+  
+```bash
+Test-ScriptFileInfo -Path RenamePathAndFiles.ps1 | Format-List *
+```
+
+- Execute o comando para publicação
+
+```bash
+Publish-Script -Path .\RenamePathAndFiles.ps1 -NuGetApiKey XXXXXXX
+```

@@ -9,7 +9,7 @@
 
 .COMPANYNAME Lincoln Zocateli
 
-.COPYRIGHT ©2024, Lincoln Zocateli. Todos os direitos reservados.
+.COPYRIGHT 2024, Lincoln Zocateli. Todos os direitos reservados.
 
 .TAGS Rename, Files, Folders, Content
 
@@ -72,7 +72,7 @@ param(
 
 
 Clear-Host
-
+[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 
 $osLanguage = (Get-Culture).Name
 
