@@ -13,9 +13,9 @@
 
 .TAGS Rename, Files, Folders, Content
 
-.LICENSEURI 
+.LICENSEURI https://github.com/lzocateli/Scripts?tab=MIT-1-ov-file#readme
 
-.PROJECTURI 
+.PROJECTURI https://github.com/lzocateli/Scripts
 
 .ICONURI 
 
