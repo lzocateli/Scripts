@@ -1,8 +1,7 @@
 /************************************************************************
-   Banco de dados: Oracle 12c
-   Objetivo: Gerar classe Config e Entidade de Dominio
-             A classe de cnfig é gerado com comandos do EF Fluent API
-   Versão: Entity Framework 6.1.3
+   Banco de dados: Oracle 19
+   Objetivo: Gerar classe Config para EF Core Fluent API
+   Versão: Entity Framework 8
 *************************************************************************/
 SELECT 
 'builder.Property(x => x.'||COLUMN_NAME||')'||
@@ -20,7 +19,7 @@ CASE
       (
         CASE
             WHEN DATA_TYPE <> 'DATE' AND DATA_TYPE <> 'NUMBER'
-              THEN 'SuaClasse.max'||COLUMN_NAME||''
+              THEN 'SuaClasse.Max'||COLUMN_NAME||''
             ELSE ''
           END 
       )||')'
@@ -36,8 +35,8 @@ CASE
 ,DATA_SCALE
 ,NULLABLE
 FROM all_tab_columns
-WHERE TABLE_NAME IN ('CLIENTES')
-  AND OWNER = 'B8UA'
+WHERE TABLE_NAME IN ('PIT_PENF_ITEM')
+  AND OWNER = 'B8CT'
 ORDER BY OWNER, TABLE_NAME,COLUMN_ID;
 
 /*************************************************
